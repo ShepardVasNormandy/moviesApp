@@ -1,14 +1,16 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
+    <div class="titleContainer">
+        <p class="title">BlablaMovie</p>
+    </div>
+    <button class="connectUser" routerLink="/user" routerDirection="root">Connexion</button>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
-</ion-content>
+<div class="container" padding>
+    <div class="content">
+        <div class="movieList">
+            <div class="movie" *ngFor="let movie of movies" [ngStyle]="{'background-image': 'url(' + movie.Poster + ')'}">
+                <p>{{movie.Title}}</p>
+            </div>
+        </div>
+    </div>
+</div>
