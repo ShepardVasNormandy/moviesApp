@@ -1,0 +1,16 @@
+<ion-header>
+    <div class="titleContainer">
+        <p class="title">BlablaMovie</p>
+    </div>
+    <!-- <button class="connectUser" routerLink="/user" routerDirection="root">Connexion</button> -->
+</ion-header>
+
+<div class="container">
+    <div class="form">
+        <input type="text" required [(ngModel)]="user.name" placeholder="Nom d'utilisateur">
+        <input type="date" required [(ngModel)]="user.birthday">
+        <input type="email" required [(ngModel)]="user.email" placeholder="Email">
+        <input type="password" required [(ngModel)]="user.password" placeholder="Mot de passe">
+        <button (click)="validateForm()" >Valider</button>
+    </div>
+</div>
