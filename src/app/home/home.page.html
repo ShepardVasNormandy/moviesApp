@@ -2,13 +2,15 @@
     <div class="titleContainer">
         <p class="title">BlablaMovie</p>
     </div>
-    <button class="connectUser" routerLink="/user" routerDirection="root">Connexion</button>
+    <button class="connectUser" routerLink="/user" routerDirection="root">
+        {{user!==undefined?user.username:'Accès au profil'}}
+    </button>
 </ion-header>
 
 <div class="container" padding>
     <div class="content">
         <div class="movieList">
-            <div class="movie" *ngFor="let movie of movies" [ngStyle]="{'background-image': 'url(' + movie.Poster + ')'}">
+            <div class="movie" *ngFor="let movie of movies" [ngStyle]="{'background-image': 'url(' + movie.Poster + ')'}" (click)="openMovieDetails(movie)" >
                 <p>{{movie.Title}}</p>
             </div>
         </div>

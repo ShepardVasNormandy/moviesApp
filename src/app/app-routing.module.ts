@@ -8,6 +8,14 @@ const routes: Routes = [
     path: 'user',
     loadChildren: () => import('./pages/user/user.module').then( m => m.UserPageModule)
   },
+  {
+    path: 'movie',
+    loadChildren: () => import('./pages/movie/movie.module').then( m => m.MoviePageModule)
+  },
+  {
+    path: 'user-details/:userEmail',
+    loadChildren: () => import('./pages/user-details/user-details.module').then( m => m.UserDetailsPageModule)
+  },
 ];
 
 @NgModule({

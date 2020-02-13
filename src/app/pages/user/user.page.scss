@@ -33,6 +33,10 @@ ion-header {
 		justify-content: center;
 		align-items: center;
 	.form {
+		p {
+			margin: 0;
+			color: white;
+		}
 		padding: 3vw;
 		background-color: black;
 		width: 50vw;
@@ -52,5 +56,8 @@ ion-header {
 			max-width: 30vw;
 			white-space: nowrap;
 		}
+	}
+	.form.signIn {
+		margin-top: 5vh ;
 	}
 }

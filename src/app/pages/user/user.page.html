@@ -6,11 +6,18 @@
 </ion-header>
 
 <div class="container">
-    <div class="form">
+    <div class="form signUp">
+        <p>Nouvel utilisateur</p>
         <input type="text" required [(ngModel)]="user.name" placeholder="Nom d'utilisateur">
-        <input type="date" required [(ngModel)]="user.birthday">
         <input type="email" required [(ngModel)]="user.email" placeholder="Email">
         <input type="password" required [(ngModel)]="user.password" placeholder="Mot de passe">
-        <button (click)="validateForm()" >Valider</button>
+        <input type="date" required [(ngModel)]="user.birthday">
+        <button (click)="validateSignUp()" >Valider</button>
+    </div>
+    <div class="form signIn">
+        <p>Utilisateur déjà existant</p>
+        <input type="email" required [(ngModel)]="user.email" placeholder="Email">
+        <input type="password" required [(ngModel)]="user.password" placeholder="Mot de passe">
+        <button (click)="validateSignIn()" >Valider</button>
     </div>
 </div>

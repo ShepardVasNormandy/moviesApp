@@ -1,8 +1,8 @@
 import { User } from './../models/user.model';
 import { ApiService } from './../services/api.service';
 import { Component } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
+import { NavController, Events } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,10 +14,15 @@ export class HomePage {
 
     public movies = []
 
+    public user
+    public token = ''
+
 
     constructor(
         private navCtrl: NavController,
         private api: ApiService,
+        private router: Router,
+        public events: Events
     ) { }
 
     ngOnInit() {
@@ -25,9 +30,14 @@ export class HomePage {
             for (let key in movies) {
                 this.movies.push(movies[key])
             }
-            console.log(this.movies)
+            this.user = JSON.parse(localStorage.getItem('user'))
+            this.token
         })
     }
 
+    public openMovieDetails(movie) {
+
+        this.navCtrl.navigateRoot(['movie'], { queryParams: { movie: JSON.stringify(movie) } })
+    }
 
 }

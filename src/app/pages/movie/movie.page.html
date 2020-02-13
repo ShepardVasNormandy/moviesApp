@@ -1,0 +1,21 @@
+<ion-header>
+	<ion-toolbar>
+		<div class="back">
+			<ion-icon name="arrow-back" routerLink="/home" routerDirection="root"></ion-icon>
+		</div>
+		<ion-title>movie</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<div class="container">
+
+	<ion-card>
+		<ion-card-header>
+			<ion-card-title>{{movie.Title}}</ion-card-title>
+		</ion-card-header>
+		<ion-card-content>
+			<img [src]="movie.Poster" alt="">
+		</ion-card-content>
+	</ion-card>
+
+</div>
