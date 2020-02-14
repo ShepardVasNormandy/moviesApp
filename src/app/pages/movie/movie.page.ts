@@ -25,7 +25,6 @@ export class MoviePage implements OnInit {
 			}
 		})
 		this.user = JSON.parse(localStorage.getItem('user'))
-
 	}
 
 	public goBack() {
