@@ -15,6 +15,8 @@ export class MoviePage implements OnInit {
 
 	) { }
 
+	public user
+
 	ngOnInit() {
 		this.route.queryParams.subscribe(params => {
 			if (params && params.movie) {
@@ -22,6 +24,8 @@ export class MoviePage implements OnInit {
 				console.warn(JSON.stringify(`Movie: ${this.movie}, params: ${params}`))
 			}
 		})
+		this.user = JSON.parse(localStorage.getItem('user'))
+
 	}
 
 	public goBack() {

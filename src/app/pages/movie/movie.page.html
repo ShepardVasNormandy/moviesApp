@@ -1,21 +1,22 @@
 <ion-header>
-	<ion-toolbar>
-		<div class="back">
-			<ion-icon name="arrow-back" routerLink="/home" routerDirection="root"></ion-icon>
-		</div>
-		<ion-title>movie</ion-title>
-	</ion-toolbar>
+    <div class="titleContainer">
+        <p class="title" (click)="backHome()" >BlablaMovie</p>
+    </div>
+    <button class="connectUser" routerLink="/user" routerDirection="root">
+        {{user!==undefined?user.username:'Connexion/Création de compte'}}
+    </button>
 </ion-header>
 
 <div class="container">
 
-	<ion-card>
-		<ion-card-header>
-			<ion-card-title>{{movie.Title}}</ion-card-title>
-		</ion-card-header>
-		<ion-card-content>
+	<div>
+		<div class="header">
+			<p class="title">{{movie.Title}}</p>
+		</div>
+		<div class="content">
 			<img [src]="movie.Poster" alt="">
-		</ion-card-content>
-	</ion-card>
+			<p>{{movie.score}}</p>
+		</div>
+	</div>
 
 </div>

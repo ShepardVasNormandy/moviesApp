@@ -40,4 +40,8 @@ export class HomePage {
         this.navCtrl.navigateRoot(['movie'], { queryParams: { movie: JSON.stringify(movie) } })
     }
 
+    public backHome() {
+        this.navCtrl.navigateRoot(['home'])
+    }
+
 }

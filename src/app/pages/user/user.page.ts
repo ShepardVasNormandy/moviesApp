@@ -19,6 +19,8 @@ export class UserPage implements OnInit {
 		public events: Events
 	) { }
 
+		public showSignUp = true
+
 	public user: User = {
 		name: '',
 		birthday: '',
@@ -26,9 +28,12 @@ export class UserPage implements OnInit {
 		password: '',
 	}
 
+	public connectedUser
+
 	private token = ''
 
 	ngOnInit() {
+		this.connectedUser = JSON.parse(localStorage.getItem('user'))
 	}
 
 	public validateSignUp() {
@@ -41,7 +46,7 @@ export class UserPage implements OnInit {
 	
 	public validateSignIn() {
 		this.api.login({email:this.user.email, password: this.user.password}).then(response => {
-			this.storeToken(response.user)
+			this.storeToken(response.user, response.token)
 			this.navCtrl.navigateRoot(['home'])
 		})
 	}
@@ -52,10 +57,20 @@ export class UserPage implements OnInit {
 		})
 	}
 
-	public storeToken(user) {
-		// localStorage.setItem(token, token)
+	public storeToken(user, token) {
+		localStorage.setItem("token", token)
 		localStorage.setItem("user", JSON.stringify(user))
 		this.user = user
-		// this.token = token
+		this.token = token
+	}
+	
+    public backHome() {
+        this.navCtrl.navigateRoot(['home'])
+	}
+	
+	public disconectUser() {
+		localStorage.removeItem('user');
+		this.connectedUser = null
+		location.reload()
 	}
 }

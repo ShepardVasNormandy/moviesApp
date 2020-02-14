@@ -1,9 +1,9 @@
 <ion-header>
     <div class="titleContainer">
-        <p class="title">BlablaMovie</p>
+        <p class="title" (click)="backHome()" >BlablaMovie</p>
     </div>
     <button class="connectUser" routerLink="/user" routerDirection="root">
-        {{user!==undefined?user.username:'Accès au profil'}}
+        {{user!==undefined?user.username:'Connexion/Création de compte'}}
     </button>
 </ion-header>
 

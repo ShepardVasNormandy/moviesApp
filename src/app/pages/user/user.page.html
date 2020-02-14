@@ -1,23 +1,37 @@
 <ion-header>
     <div class="titleContainer">
-        <p class="title">BlablaMovie</p>
+        <p class="title" (click)="backHome()" >BlablaMovie</p>
     </div>
-    <!-- <button class="connectUser" routerLink="/user" routerDirection="root">Connexion</button> -->
+    <button class="disconectUser" (click)="disconectUser()"  routerDirection="root" *ngIf="connectedUser" >
+        Déconnexion
+    </button>
 </ion-header>
 
-<div class="container">
-    <div class="form signUp">
-        <p>Nouvel utilisateur</p>
+<div class="connectionContainer" *ngIf="!connectedUser" >
+
+    <div class="buttons">
+        <button (click)="showSignUp = true" [ngClass]="{'selected':!showSignUp}" >Création de compte</button>
+        <button (click)="showSignUp = false" [ngClass]="{'selected':showSignUp}">Connexion</button>
+    </div>
+    <div class="form signUp" *ngIf="showSignUp" >
         <input type="text" required [(ngModel)]="user.name" placeholder="Nom d'utilisateur">
         <input type="email" required [(ngModel)]="user.email" placeholder="Email">
         <input type="password" required [(ngModel)]="user.password" placeholder="Mot de passe">
         <input type="date" required [(ngModel)]="user.birthday">
-        <button (click)="validateSignUp()" >Valider</button>
+        <button (click)="validateSignUp()">Valider</button>
     </div>
-    <div class="form signIn">
-        <p>Utilisateur déjà existant</p>
+
+    <div class="form signIn" *ngIf="!showSignUp" >
         <input type="email" required [(ngModel)]="user.email" placeholder="Email">
         <input type="password" required [(ngModel)]="user.password" placeholder="Mot de passe">
-        <button (click)="validateSignIn()" >Valider</button>
+        <button (click)="validateSignIn()">Valider</button>
     </div>
+</div>
+
+<div class="userProfileContainer" *ngIf="connectedUser" >
+    <p>Bonjour, {{connectedUser?.username}}.</p>
+    <div class="likedMovies">
+        <div class="likedMovie" *ngFor="let movie of connectedUser.movies" ></div>
+    </div>
+
 </div>

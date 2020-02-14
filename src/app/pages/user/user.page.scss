@@ -5,14 +5,13 @@ ion-header {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	align-items: center ;
-	.connectUser {
+	align-items: center;
+	.disconectUser {
 		height: 100%;
 		border-radius: 0 !important;
-		background-color: rgba(white, .5);
+		background-color: rgba(white, 0.5);
 		color: white;
 		font-size: 1.2em;
-
 	}
 	.titleContainer {
 		p {
@@ -24,14 +23,36 @@ ion-header {
 	}
 }
 
-
-.container {
+.connectionContainer {
 	width: 100%;
 	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	margin-top: 5vh;
+	.buttons {
+		width: 50vw;
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
+		flex-direction: row;
+		justify-content: space-around;
 		align-items: center;
+		background-color: black;
+		color: white;
+		button {
+			width: 50%;
+			background-color: black;
+			color: white;
+			font-size: 1.5em;
+			text-align: center;
+			padding: 1vh;
+		}
+		.selected {
+			background-color: #fff;
+			color: black;
+			border: 1px solid black;
+		}
+	}
 	.form {
 		p {
 			margin: 0;
@@ -40,7 +61,6 @@ ion-header {
 		padding: 3vw;
 		background-color: black;
 		width: 50vw;
-		border-radius: 4px;
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
@@ -50,14 +70,20 @@ ion-header {
 			width: 100%;
 		}
 		button {
-			padding: .5em 1em;
+			padding: 0.5em 1em;
 			font-size: 1.5rem;
 			border-radius: 4px;
 			max-width: 30vw;
 			white-space: nowrap;
 		}
 	}
-	.form.signIn {
-		margin-top: 5vh ;
-	}
+}
+
+.userProfileContainer {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
 }

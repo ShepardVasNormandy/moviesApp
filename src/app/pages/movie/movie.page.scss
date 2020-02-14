@@ -1,15 +1,25 @@
-.container {
-    height: 100%;
-	ion-card {
-		ion-card-content {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			img {
-				height: 45vw;
-				width: 30vw;
-			}
+ion-header {
+	background-image: url(../../../assets/icon/kisspng-desktop-wallpaper-blue-space-nebula-wallpaper-space-5ab9495d07a312.8953144515220923810313.png);
+	background-position: center;
+	background-size: cover;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center ;
+	.connectUser {
+		height: 100%;
+		border-radius: 0 !important;
+		background-color: rgba(white, .5);
+		color: white;
+		font-size: 1.2em;
+
+	}
+	.titleContainer {
+		p {
+			text-align: center;
+			color: white;
+			font-size: 2em;
+			margin: 1vh 2vw;
 		}
 	}
 }
