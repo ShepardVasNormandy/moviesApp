@@ -1,0 +1,18 @@
+<ion-header>
+  <div class="titleContainer">
+      <p class="title" (click)="backHome()" >BlablaMovie</p>
+  </div>
+  <button class="connectUser" routerLink="/user" routerDirection="root">
+      {{user!==undefined?user.username:'Connexion/Création de compte'}}
+  </button>
+</ion-header>
+
+<div class="container" padding>
+  <div class="content">
+      <div class="movieList">
+          <div class="movie" *ngFor="let movie of movies" [ngStyle]="{'background-image': 'url(' + movie.Poster + ')'}" (click)="openMovieDetails(movie)" >
+              <p>{{movie.Title}}</p>
+          </div>
+      </div>
+  </div>
+</div>
