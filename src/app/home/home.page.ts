@@ -17,6 +17,8 @@ export class HomePage {
     public user
     public token = ''
 
+    public bestMovie
+
 
     constructor(
         private navCtrl: NavController,
@@ -32,12 +34,19 @@ export class HomePage {
             }
             this.user = JSON.parse(localStorage.getItem('user'))
             this.token
+            this.getBestMovie()
         })
     }
 
-    public openMovieDetails(movie) {
+    public goToMovieList() {
+        this.navCtrl.navigateRoot(['movie-list'])
+    }
 
-        this.navCtrl.navigateRoot(['movie'], { queryParams: { movie: JSON.stringify(movie) } })
+    public getBestMovie() {
+        this.api.getBestMovie().then(bestMovie => {
+            console.log(bestMovie)
+            this.bestMovie = bestMovie[0]
+        })
     }
 
     public backHome() {

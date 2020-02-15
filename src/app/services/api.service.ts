@@ -17,12 +17,8 @@ export class ApiService {
     
     constructor(private http: HttpClient) { }
 
-    public getUserData(userEmail):Promise<any> {
-        return this.http.put('http://localhost:3000/user', {email:userEmail}, {headers:this.httpOptions}).toPromise()
-    }
-
-    public getMovieData(movieID) {
-
+    public vote(userId, movieId, vote):Promise<any> {
+        return this.http.put('http://localhost:3000/vote', {userId, movieId, vote}, {headers:this.httpOptions}).toPromise()
     }
 
     public createUser(user):Promise<any> {
@@ -35,6 +31,10 @@ export class ApiService {
 
     public getMovieList() {
         return this.http.get('http://localhost:3000/movies', {headers:this.httpOptions}).toPromise()
+    }
+
+    public getBestMovie() {
+        return this.http.get('http://localhost:3000/movies/best', {headers:this.httpOptions}).toPromise()
     }
 
 

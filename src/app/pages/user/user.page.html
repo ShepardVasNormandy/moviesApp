@@ -10,11 +10,11 @@
 <div class="connectionContainer" *ngIf="!connectedUser" >
 
     <div class="buttons">
-        <button (click)="showSignUp = true" [ngClass]="{'selected':!showSignUp}" >Création de compte</button>
+        <button (click)="showSignUp = true" [ngClass]="{'selected':!showSignUp}">Création de compte</button>
         <button (click)="showSignUp = false" [ngClass]="{'selected':showSignUp}">Connexion</button>
     </div>
     <div class="form signUp" *ngIf="showSignUp" >
-        <input type="text" required [(ngModel)]="user.name" placeholder="Nom d'utilisateur">
+        <input type="text" required [(ngModel)]="user.username" placeholder="Nom d'utilisateur">
         <input type="email" required [(ngModel)]="user.email" placeholder="Email">
         <input type="password" required [(ngModel)]="user.password" placeholder="Mot de passe">
         <input type="date" required [(ngModel)]="user.birthday">
@@ -30,8 +30,12 @@
 
 <div class="userProfileContainer" *ngIf="connectedUser" >
     <p>Bonjour, {{connectedUser?.username}}.</p>
+    <p>{{connectedUser.movies.length>0?'Ci-dessous, vos films favoris':'Vous n\'avez mis en favoris aucun film pour le moment.'}}</p>
     <div class="likedMovies">
-        <div class="likedMovie" *ngFor="let movie of connectedUser.movies" ></div>
+        <div class="likedMovie" *ngFor="let movie of connectedUser.movies" >
+            <p class="title">{{movie.Title}} - {{movie.Year}}</p>
+            <img [src]="movie.Poster" alt="">
+        </div>
     </div>
 
 </div>

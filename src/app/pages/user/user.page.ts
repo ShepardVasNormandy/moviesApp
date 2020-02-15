@@ -22,7 +22,7 @@ export class UserPage implements OnInit {
 		public showSignUp = true
 
 	public user: User = {
-		name: '',
+		username: '',
 		birthday: '',
 		email: '',
 		password: '',
@@ -34,12 +34,14 @@ export class UserPage implements OnInit {
 
 	ngOnInit() {
 		this.connectedUser = JSON.parse(localStorage.getItem('user'))
+
+		console.log(this.connectedUser)
 	}
 
 	public validateSignUp() {
 		this.user.birthday = moment(this.user.birthday).format('X')
-		this.api.createUser(this.user).then(userProfile => {
-			this.storeToken(userProfile.token, userProfile._id)
+		this.api.createUser(this.user).then(response => {
+			this.storeToken(response.user, response.token)
 			this.navCtrl.navigateRoot(['home'])
 		})
 	}
@@ -48,12 +50,6 @@ export class UserPage implements OnInit {
 		this.api.login({email:this.user.email, password: this.user.password}).then(response => {
 			this.storeToken(response.user, response.token)
 			this.navCtrl.navigateRoot(['home'])
-		})
-	}
-
-	public createUser() {
-		this.api.createUser(this.user).then(result => {
-			console.log(JSON.stringify(result))
 		})
 	}
 

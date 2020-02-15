@@ -13,8 +13,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/movie/movie.module').then( m => m.MoviePageModule)
   },
   {
-    path: 'user-details/:userEmail',
-    loadChildren: () => import('./pages/user-details/user-details.module').then( m => m.UserDetailsPageModule)
+    path: 'movie-list',
+    loadChildren: () => import('./pages/movie-list/movie-list.module').then( m => m.MovieListPageModule)
   },
 ];
 

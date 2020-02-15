@@ -1,6 +1,9 @@
+import { ApiService } from 'src/app/services/api.service';
+import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie.model';
+
 
 @Component({
 	selector: 'app-movie',
@@ -8,12 +11,15 @@ import { Movie } from 'src/app/models/movie.model';
 	styleUrls: ['./movie.page.scss'],
 })
 export class MoviePage implements OnInit {
-	public movie:Movie
+	public movie: Movie
 	constructor(
 		private route: ActivatedRoute,
-		private router: Router
+		private navCtrl: NavController,
+		private api: ApiService
 
 	) { }
+
+	public showLikes = false
 
 	public user
 
@@ -21,14 +27,40 @@ export class MoviePage implements OnInit {
 		this.route.queryParams.subscribe(params => {
 			if (params && params.movie) {
 				this.movie = JSON.parse(params.movie)
-				console.warn(JSON.stringify(`Movie: ${this.movie}, params: ${params}`))
 			}
 		})
 		this.user = JSON.parse(localStorage.getItem('user'))
 	}
 
-	public goBack() {
-		// this.router.navigateByUrl('/home', )
+	public backHome() {
+		this.navCtrl.navigateRoot(['home'])
+	}
+	
+	public backToList() {
+		this.navCtrl.navigateRoot(['movie-list'])
 	}
 
+	public hasUserVoted(): { value: boolean, color: string } {
+		if (this.user && this.user.movies.find(movie => movie._id === this.movie._id)) return { value: true, color: 'goldenrod' }
+		else return { value: false, color: 'grey' }
+	}
+
+	public vote() {
+		let score = 0
+		!this.hasUserVoted().value ? score = 1 : score = 0
+		this.api.vote(this.user.userId, this.movie._id, score).then(response => {
+			console.log(response)
+			this.updateInfos(response.user, response.movie)
+		})
+	}
+
+	private updateInfos(user, movie) {
+		localStorage.setItem("user", JSON.stringify(user))
+		this.user = user
+		this.movie = movie
+	}
+
+	public displayLikes() {
+		this.showLikes = !this.showLikes
+	}
 }

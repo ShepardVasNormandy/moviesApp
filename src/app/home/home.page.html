@@ -1,6 +1,6 @@
 <ion-header>
     <div class="titleContainer">
-        <p class="title" (click)="backHome()" >BlablaMovie</p>
+        <p class="title" (click)="backHome()">BlablaMovie</p>
     </div>
     <button class="connectUser" routerLink="/user" routerDirection="root">
         {{user!==undefined?user.username:'Connexion/Création de compte'}}
@@ -8,11 +8,19 @@
 </ion-header>
 
 <div class="container" padding>
-    <div class="content">
-        <div class="movieList">
-            <div class="movie" *ngFor="let movie of movies" [ngStyle]="{'background-image': 'url(' + movie.Poster + ')'}" (click)="openMovieDetails(movie)" >
-                <p>{{movie.Title}}</p>
-            </div>
-        </div>
+    <p>Votez pour vos 3 films préférés!</p>
+    <p>Si votre film est en haut du classement à la fin de la semaine, vous remporterez peut-être votre poids en
+        hot-dogs*</p>
+    <div class="bestMovie" *ngIf="bestMovie && bestMovie.score >= 1">
+        <p>Cette semaine en haut du classement:
+            {{bestMovie.Title}}({{bestMovie.Year}})</p>
+        <img [src]="bestMovie.Poster" alt="">
     </div>
+    <ion-button color="dark" (click)="goToMovieList()">Accéder à la liste</ion-button>
 </div>
+
+<p class="terms">*Le prix doit être demandé avant la fin de la période se terminant à l'expiration d'un délai de 21 ans
+    à compter du décès du dernier survivant de tous les descendants directs de Sa Majesté Elizabeth II nés à la date de
+    la présente entente. Cependant, cette restriction ne s'appliquera pas en cas d'apparition (certifiée par le Centers
+    for Disease Control ou l'organisme successeur) d'une infection zombie généralisée susceptible d'entraîner la chute
+    de la civilisation organisée.</p>

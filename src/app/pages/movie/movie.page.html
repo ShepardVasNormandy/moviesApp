@@ -1,22 +1,32 @@
 <ion-header>
-    <div class="titleContainer">
-        <p class="title" (click)="backHome()" >BlablaMovie</p>
-    </div>
-    <button class="connectUser" routerLink="/user" routerDirection="root">
-        {{user!==undefined?user.username:'Connexion/Création de compte'}}
-    </button>
+	<div class="titleContainer">
+		<p class="title" (click)="backHome()">BlablaMovie</p>
+	</div>
+	<button class="connectUser" routerLink="/user" routerDirection="root">
+		{{user?user.username:'Connexion/Création de compte'}}
+	</button>
 </ion-header>
 
 <div class="container">
-
-	<div>
-		<div class="header">
-			<p class="title">{{movie.Title}}</p>
-		</div>
-		<div class="content">
-			<img [src]="movie.Poster" alt="">
-			<p>{{movie.score}}</p>
+	<ion-button class="backButton" color="dark" (click)="backToList()">
+		<ion-icon name="arrow-back"></ion-icon>
+		Retour à la liste
+	</ion-button>
+	<div class="movie">
+		<p class="title">{{movie.Title}} - {{movie.Year}}</p>
+		<img [src]="movie.Poster" alt="">
+	</div>
+	<div class="score">
+		<ion-icon name="star" [ngStyle]="{'color': hasUserVoted().color}" (click)="vote()"></ion-icon>
+		<div class="likeSentence" *ngIf="movie.score >= 1" (click)="displayLikes()">
+			<p *ngIf="hasUserVoted().value && movie.score === 1">Vous avez aimé ce film.</p>
+			<p *ngIf="hasUserVoted().value && movie.score > 1">Vous et {{movie.score-1}} personne(s) ont aimé ce film.
+				<ion-icon [name]="!showLikes?'arrow-down':'arrow-up'"></ion-icon></p>
+			<p *ngIf="!hasUserVoted().value && movie.score === 1">{{movie.score}} personne a aimé ce film.<ion-icon [name]="!showLikes?'arrow-down':'arrow-up'"></ion-icon></p>
+			<p *ngIf="!hasUserVoted().value && movie.score > 1">{{movie.score}} personnes ont aimé ce film. <ion-icon [name]="!showLikes?'arrow-down':'arrow-up'"></ion-icon></p>
+			<div class="likeList" [ngClass]="showLikes?'expanded':'reduced'" >
+				<p *ngFor="let upvoter of movie.upvoters" >{{upvoter}}</p>
+			</div>
 		</div>
 	</div>
-
 </div>
