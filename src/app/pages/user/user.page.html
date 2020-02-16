@@ -32,7 +32,7 @@
     <p>Bonjour, {{connectedUser?.username}}.</p>
     <p>{{connectedUser.movies.length>0?'Ci-dessous, vos films favoris':'Vous n\'avez mis en favoris aucun film pour le moment.'}}</p>
     <div class="likedMovies">
-        <div class="likedMovie" *ngFor="let movie of connectedUser.movies" >
+        <div class="likedMovie" *ngFor="let movie of connectedUser.movies" (click)="openMovieDetails(movie)">
             <p class="title">{{movie.Title}} - {{movie.Year}}</p>
             <img [src]="movie.Poster" alt="">
         </div>

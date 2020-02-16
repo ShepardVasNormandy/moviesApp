@@ -19,6 +19,8 @@ export class HomePage {
 
     public bestMovie
 
+    public showGif = false
+
 
     constructor(
         private navCtrl: NavController,
@@ -35,6 +37,7 @@ export class HomePage {
             this.user = JSON.parse(localStorage.getItem('user'))
             this.token
             this.getBestMovie()
+            this.api.logEgg().then(result => console.log(result))
         })
     }
 
@@ -51,6 +54,13 @@ export class HomePage {
 
     public backHome() {
         this.navCtrl.navigateRoot(['home'])
+    }
+
+    public displayGif() {
+        this.showGif = true
+        setTimeout(() => {
+            this.showGif = false
+        }, 1500);
     }
 
 }

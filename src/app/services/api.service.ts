@@ -37,6 +37,10 @@ export class ApiService {
         return this.http.get('http://localhost:3000/movies/best', {headers:this.httpOptions}).toPromise()
     }
 
+    public logEgg() {
+        return this.http.get('../../assets/banner.txt').toPromise()
+    }
+
 
     
 }
