@@ -1,5 +1,5 @@
 import { ApiService } from 'src/app/services/api.service';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie.model';
@@ -15,7 +15,8 @@ export class MoviePage implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private navCtrl: NavController,
-		private api: ApiService
+		private api: ApiService,
+		private alertController: AlertController
 
 	) { }
 
@@ -47,11 +48,21 @@ export class MoviePage implements OnInit {
 
 	public vote() {
 		let score = 0
+		if (!this.user || !this.user.userId) this.presentAlert()
 		!this.hasUserVoted().value ? score = 1 : score = 0
 		this.api.vote(this.user.userId, this.movie._id, score).then(response => {
 			console.log(response)
 			this.updateInfos(response.user, response.movie)
 		})
+	}
+
+	async presentAlert() {
+		const alert = await this.alertController.create({
+		  message: 'Vous devez être connecté pour voter',
+		  buttons: ['OK']
+		});
+	
+		await alert.present();
 	}
 
 	private updateInfos(user, movie) {

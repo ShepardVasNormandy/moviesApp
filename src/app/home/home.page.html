@@ -3,7 +3,7 @@
         <p class="title" (click)="backHome()">BlablaMovie</p>
     </div>
     <button class="connectUser" routerLink="/user" routerDirection="root">
-        {{user!==undefined?user.username:'Connexion/Création de compte'}}
+        {{user?user.username:'Connexion/Création de compte'}}
     </button>
 </ion-header>
 

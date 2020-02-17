@@ -37,7 +37,6 @@ export class HomePage {
             this.user = JSON.parse(localStorage.getItem('user'))
             this.token
             this.getBestMovie()
-            this.api.logEgg().then(result => console.log(result))
         })
     }
 
@@ -48,8 +47,8 @@ export class HomePage {
     public getBestMovie() {
         this.api.getBestMovie().then(bestMovie => {
             console.log(bestMovie)
-            this.bestMovie = bestMovie[0]
-        })
+            this.bestMovie = bestMovie
+        }).catch(error => console.warn('Contest not over yet'))
     }
 
     public backHome() {
@@ -62,5 +61,6 @@ export class HomePage {
             this.showGif = false
         }, 1500);
     }
+    
 
 }
