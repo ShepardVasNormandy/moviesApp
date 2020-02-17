@@ -1,11 +1,11 @@
 Environment requirements:
 
-Ionic: 4.11.10
-Ionic CLI: 4.6.0
+> Ionic: 4.11.10
+> Ionic CLI: 4.6.0
 
-Angular CLI: 8.1.3
+> Angular CLI: 8.1.3
 
-Install infos: https://ionicframework.com/docs/installation/cli
+> Install infos: https://ionicframework.com/docs/installation/cli
 
 ############################
 
